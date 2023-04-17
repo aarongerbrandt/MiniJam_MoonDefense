@@ -1,0 +1,47 @@
+{
+    "num_waves": 2,
+    "waves": [
+        {
+            "enemies": [
+                {
+                    "name": "Enemy_1",
+                    "time": 0.1
+                },
+                {
+                    "name": "Enemy_1",
+                    "time": 1.5
+                },
+                {
+                    "name": "Enemy_1",
+                    "time": 2.0
+                },
+                {
+                    "name": "Enemy_2",
+                    "time": 3.0
+                }
+            ],
+            "wave_size": 4
+        },
+        {
+            "enemies": [
+                {
+                    "name": "Enemy_1",
+                    "time": 0.1
+                },
+                {
+                    "name": "Enemy_2",
+                    "time": 0.7
+                },
+                {
+                    "name": "Enemy_1",
+                    "time": 2.0
+                },
+                {
+                    "name": "Enemy_2",
+                    "time": 0.7
+                }
+            ],
+            "wave_size": 4
+        }
+    ]
+}

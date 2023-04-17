@@ -7,6 +7,14 @@ onready var time_display = $TimeDisplay as Label
 onready var timer = $UpgradeTimer as Timer
 onready var upgrade_menu = $UpgradePopup as PopupMenu
 
+signal level_start
+
+var tower_list = [
+	load("res://Resources/Turrets/Turret_1.tscn"),
+	load("res://Resources/Turrets/Turret_2.tscn"),
+	load("res://Resources/Turrets/Turret_3.tscn"),
+]
+
 var potential_upgrades = [
 	preload("res://Assets/Images/TurretParts/turret_top_5.png"),
 	preload("res://Assets/Images/TurretParts/turret_top_6.png"),
@@ -32,9 +40,9 @@ func _add_upgrade_options(numOptions):
 		var icon = load(option["assetPath"])
 		var name = option["name"]
 		var desc = option["description"]
+		var id = option["id"]
 		
-		upgrade_menu.add_icon_check_item(icon, name, i + 1)
-		# upgrade_menu.add_icon_radio_check_item(icon, "Item %d" % i, i)
+		upgrade_menu.add_icon_check_item(icon, name, id)
 	# TODO: Change to actually generate options
 
 func _on_UpgradeTimer_timeout():
@@ -56,10 +64,21 @@ func _reset_menu():
 	upgrade_options.clear()
 
 func _on_UpgradePopup_id_pressed(id):
-	print("%d pressed" % id)
+	_build_tower(id)
+
+func _build_tower(tower_id):
+	var tower = tower_list[tower_id].instance()
+	tower.type = "Turret_%d" % (tower_id + 1)
+	$Turrets.add_child(tower)
+	tower.connect("placed", self, "_on_placed")
+
+func _on_placed():
 	timer.start()
+	emit_signal("level_start")
+	print("level start emitted")
 
 func readTurretData():
+	# Reads Turret Data from JSON file and returns JSON object
 	var file = File.new()
 	var jsonString = ""
 	

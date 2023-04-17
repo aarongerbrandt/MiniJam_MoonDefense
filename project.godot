@@ -14,6 +14,10 @@ config/name="Moon Defense"
 run/main_scene="res://Scenes/Menus/StartMenu.tscn"
 config/icon="res://icon.png"
 
+[autoload]
+
+GameData="*res://Resources/Data/GameData.gd"
+
 [display]
 
 window/size/height=640
