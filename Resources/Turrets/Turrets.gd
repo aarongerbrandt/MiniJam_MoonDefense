@@ -88,13 +88,12 @@ func _turn(turret_target):
 		turret.look_at(enemy_position)
 
 func _fire():
-	print("Firing!")
 	#var bullet = load("res://Resources/Projectiles/Missile_1.tscn").instance()
 	#bullet.shoot(target)
 	#$Bullets.add_child(bullet)
 	on_cooldown = true
 	target.on_hit(GameData.tower_data[type]["damage"])
-	yield(get_tree().create_timer(fire_rate), "timeout")
+	yield(get_tree().create_timer(1 / fire_rate), "timeout")
 	
 	on_cooldown = false
 	

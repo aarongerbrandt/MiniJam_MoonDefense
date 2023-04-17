@@ -25,7 +25,7 @@ var upgrade_options = []
 func _ready():
 	show_upgrade_menu()
 
-func _process(delta):
+func _process(_delta):
 	_update_upgrade_timer()
 
 func _add_upgrade_options(numOptions):
@@ -39,11 +39,9 @@ func _add_upgrade_options(numOptions):
 		
 		var icon = load(option["assetPath"])
 		var name = option["name"]
-		var desc = option["description"]
 		var id = option["id"]
 		
 		upgrade_menu.add_icon_check_item(icon, name, id)
-	# TODO: Change to actually generate options
 
 func _on_UpgradeTimer_timeout():
 	show_upgrade_menu()
@@ -58,6 +56,7 @@ func _update_upgrade_timer():
 func show_upgrade_menu():
 	_add_upgrade_options(num_upgrade_options)
 	upgrade_menu.show()
+	#readTurretData()
 
 func _reset_menu():
 	upgrade_menu.clear()
@@ -78,14 +77,4 @@ func _on_placed():
 	print("level start emitted")
 
 func readTurretData():
-	# Reads Turret Data from JSON file and returns JSON object
-	var file = File.new()
-	var jsonString = ""
-	
-	if file.file_exists("res://Resources/Data/TurretData.json"):
-		file.open("res://Resources/Data/TurretData.json", File.READ)
-		jsonString = file.get_as_text()
-		file.close()
-		
-	var turretData = JSON.parse(jsonString).result
-	return turretData
+	return GameData.tower_data.values()

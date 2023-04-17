@@ -28,5 +28,5 @@ margin_bottom = -16.0
 texture_under = ExtResource( 3 )
 texture_progress = ExtResource( 3 )
 tint_under = Color( 0.352941, 0.337255, 0.337255, 1 )
-tint_progress = Color( 0.247059, 0.654902, 0.0980392, 1 )
+tint_progress = Color( 0.286275, 0.913725, 0.0588235, 1 )
 nine_patch_stretch = true
